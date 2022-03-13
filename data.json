@@ -1,0 +1,193 @@
+[
+  {
+    "name": {
+      "common": "Benin",
+      "official": "Republic of Benin"
+    },
+    "currencies": {
+      "XOF": {
+        "name": "West African CFA franc",
+        "symbol": "Fr"
+      }
+    },
+    "capital": ["Porto-Novo"],
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "languages": {
+      "fra": "French"
+    },
+    "timezones": ["UTC+01:00"],
+    "continents": ["Africa"],
+    "flags": {
+      "png": "https://flagcdn.com/w320/bj.png",
+      "svg": "https://flagcdn.com/bj.svg"
+    },
+    "coatOfArms": {
+      "png": "https://mainfacts.com/media/images/coats_of_arms/bj.png",
+      "svg": "https://mainfacts.com/media/images/coats_of_arms/bj.svg"
+    }
+  },
+  {
+    "name": {
+      "common": "Nigeria",
+      "official": "Federal Republic of Nigeria"
+    },
+    "currencies": {
+      "NGN": {
+        "name": "Nigerian naira",
+        "symbol": "₦"
+      }
+    },
+    "capital": ["Abuja"],
+    "region": "Africa",
+    "subregion": "Western Africa",
+    "languages": {
+      "eng": "English"
+    },
+    "flag": "🇳🇬",
+    "timezones": ["UTC+01:00"],
+    "continents": ["Africa"],
+    "flags": {
+      "png": "https://flagcdn.com/w320/ng.png",
+      "svg": "https://flagcdn.com/ng.svg"
+    },
+    "coatOfArms": {
+      "png": "https://mainfacts.com/media/images/coats_of_arms/ng.png",
+      "svg": "https://mainfacts.com/media/images/coats_of_arms/ng.svg"
+    }
+  },
+  {
+    "name": {
+      "common": "Comoros",
+      "official": "Union of the Comoros"
+    },
+    "currencies": {
+      "KMF": {
+        "name": "Comorian franc",
+        "symbol": "Fr"
+      }
+    },
+    "capital": ["Moroni"],
+    "region": "Africa",
+    "subregion": "Eastern Africa",
+    "languages": {
+      "ara": "Arabic",
+      "fra": "French",
+      "zdj": "Comorian"
+    },
+    "flag": "🇰🇲",
+    "timezones": ["UTC+03:00"],
+    "continents": ["Africa"],
+    "flags": {
+      "png": "https://flagcdn.com/w320/km.png",
+      "svg": "https://flagcdn.com/km.svg"
+    },
+    "coatOfArms": {
+      "png": "https://mainfacts.com/media/images/coats_of_arms/km.png",
+      "svg": "https://mainfacts.com/media/images/coats_of_arms/km.svg"
+    }
+  },
+  {
+    "name": {
+      "common": "Zimbabwe",
+      "official": "Republic of Zimbabwe"
+    },
+    "currencies": {
+      "ZWL": {
+        "name": "Zimbabwean dollar",
+        "symbol": "$"
+      }
+    },
+    "capital": ["Harare"],
+    "region": "Africa",
+    "subregion": "Southern Africa",
+    "languages": {
+      "bwg": "Chibarwe",
+      "eng": "English",
+      "kck": "Kalanga",
+      "khi": "Khoisan",
+      "ndc": "Ndau",
+      "nde": "Northern Ndebele",
+      "nya": "Chewa",
+      "sna": "Shona",
+      "sot": "Sotho",
+      "toi": "Tonga",
+      "tsn": "Tswana",
+      "tso": "Tsonga",
+      "ven": "Venda",
+      "xho": "Xhosa",
+      "zib": "Zimbabwean Sign Language"
+    },
+    "flag": "🇿🇼",
+    "timezones": ["UTC+02:00"],
+    "continents": ["Africa"],
+    "flags": {
+      "png": "https://flagcdn.com/w320/zw.png",
+      "svg": "https://flagcdn.com/zw.svg"
+    },
+    "coatOfArms": {
+      "png": "https://mainfacts.com/media/images/coats_of_arms/zw.png",
+      "svg": "https://mainfacts.com/media/images/coats_of_arms/zw.svg"
+    }
+  },
+  {
+    "name": {
+      "common": "Chad",
+      "official": "Republic of Chad"
+    },
+    "currencies": {
+      "XAF": {
+        "name": "Central African CFA franc",
+        "symbol": "Fr"
+      }
+    },
+    "capital": ["N'Djamena"],
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "languages": {
+      "ara": "Arabic",
+      "fra": "French"
+    },
+    "flag": "🇹🇩",
+    "timezones": ["UTC+01:00"],
+    "continents": ["Africa"],
+    "flags": {
+      "png": "https://flagcdn.com/w320/td.png",
+      "svg": "https://flagcdn.com/td.svg"
+    },
+    "coatOfArms": {
+      "png": "https://mainfacts.com/media/images/coats_of_arms/td.png",
+      "svg": "https://mainfacts.com/media/images/coats_of_arms/td.svg"
+    }
+  },
+  {
+    "name": {
+      "common": "Cameroon",
+      "official": "Republic of Cameroon"
+    },
+    "currencies": {
+      "XAF": {
+        "name": "Central African CFA franc",
+        "symbol": "Fr"
+      }
+    },
+    "capital": ["Yaoundé"],
+    "region": "Africa",
+    "subregion": "Middle Africa",
+    "languages": {
+      "eng": "English",
+      "fra": "French"
+    },
+    "flag": "🇨🇲",
+    "timezones": ["UTC+01:00"],
+    "continents": ["Africa"],
+    "flags": {
+      "png": "https://flagcdn.com/w320/cm.png",
+      "svg": "https://flagcdn.com/cm.svg"
+    },
+    "coatOfArms": {
+      "png": "https://mainfacts.com/media/images/coats_of_arms/cm.png",
+      "svg": "https://mainfacts.com/media/images/coats_of_arms/cm.svg"
+    }
+  }
+]
