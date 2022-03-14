@@ -116,6 +116,7 @@ button {
   margin-top: 20px;
   margin-left: auto;
   color: var(--white);
+  /* display: none; */
 }
 
 .button__next:hover {
@@ -132,6 +133,10 @@ button {
   background: var(--correct);
   color: #fff;
   border: 2px solid currentColor;
+}
+
+.show {
+  display: block;
 }
 
 @media (min-width: 764px) {

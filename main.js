@@ -5,6 +5,8 @@ import {
   SubRegionQuestion,
 } from "./questionsTemplate.js";
 
+let SCORE = 0;
+
 async function fetchCountriesData() {
   try {
     const response = await fetch("data.json");
@@ -19,7 +21,7 @@ async function fetchCountriesData() {
   }
 }
 
-async function determineQuestion() {
+async function determineQuestion(score) {
   const countriesData = await fetchCountriesData();
 
   console.log(countriesData);
@@ -70,52 +72,41 @@ async function determineQuestion() {
       wrongChoices
     );
 
-    determineOptionClicked(countryData, selectedQuestion.type);
+    determineOptionClicked(countryData, selectedQuestion.type, score);
   }
 }
 
-determineQuestion();
+determineQuestion(SCORE);
 
-function determineOptionClicked(countryData, questionType) {
-  // selectAll(".button__option").forEach((button) => {
-  //   button.addEventListener(
-  //     "click",
-  //     (e) => {
-  //       const selectedOption = e.target;
-  //       const selectedOptionText = e.target.lastElementChild.innerText;
-  //       const answer = checkButtonClicked(countryData, questionType);
-  //       if (answer === selectedOptionText) {
-  //         console.log(answer);
-  //         console.log(selectedOptionText);
-  //         console.log(selectedOption);
-  //         selectedOption.classList.add("correct");
-  //       } else {
-  //         selectedOption.classList.add("wrong");
-  //       }
-  //     },
-  //     { once: true }
-  //   );
-  // });
+const nextButton = select(".button__next");
+console.log(nextButton);
 
+function determineOptionClicked(countryData, questionType, score) {
   const answer = checkButtonClicked(countryData, questionType);
   const buttonsCont = select(".card__buttons");
+  const nextButton = select(".button__next");
 
   buttonsCont.addEventListener("click", someFunction);
   const correctOption = select("[data-ans='true']");
 
-  console.log(correctOption);
+  // console.log(correctOption);
 
   function someFunction(e) {
     const selectedOption = e.target;
+    console.log(e.target);
     const selectedOptionText = e.target.lastElementChild.innerText;
     if (selectedOption.classList.contains("button__option")) {
       if (answer === selectedOptionText) {
         selectedOption.classList.add("correct");
+        score = score + 1;
+        console.log(score, "score");
       } else {
         selectedOption.classList.add("wrong");
       }
 
       correctOption.classList.add("correct");
+      nextButton.disabled = false;
+      nextButton.addEventListener("click", () => determineQuestion(score));
       buttonsCont.removeEventListener("click", someFunction);
     }
   }
