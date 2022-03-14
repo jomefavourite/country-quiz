@@ -195,3 +195,95 @@ const questions = [
     },
   },
 ];
+
+const buttonOption1 = select(".button__option--1");
+const buttonOption2 = select(".button__option--2");
+const buttonOption3 = select(".button__option--3");
+const buttonOption4 = select(".button__option--4");
+
+buttonOption1.addEventListener(
+  "click",
+  cb(
+    countryData,
+    questionType,
+    buttonOption1,
+    buttonOption2,
+    buttonOption3,
+    buttonOption4
+  ),
+  {
+    once: true,
+  }
+);
+buttonOption2.addEventListener(
+  "click",
+  cb(
+    countryData,
+    questionType,
+    buttonOption1,
+    buttonOption2,
+    buttonOption3,
+    buttonOption4
+  ),
+  {
+    once: true,
+  }
+);
+buttonOption3.addEventListener(
+  "click",
+  cb(
+    countryData,
+    questionType,
+    buttonOption1,
+    buttonOption2,
+    buttonOption3,
+    buttonOption4
+  ),
+  {
+    once: true,
+  }
+);
+buttonOption4.addEventListener(
+  "click",
+  cb(
+    countryData,
+    questionType,
+    buttonOption1,
+    buttonOption2,
+    buttonOption3,
+    buttonOption4
+  ),
+  {
+    once: true,
+  }
+);
+
+function cb(
+  countryData,
+  questionType,
+  buttonOption1,
+  buttonOption2,
+  buttonOption3,
+  buttonOption4
+) {
+  return function handleClick() {
+    const selectedOption = this;
+    const selectedOptionText = this.lastElementChild.innerText;
+    const answer = checkButtonClicked(countryData, questionType);
+
+    if (answer === selectedOptionText) {
+      console.log(answer);
+      console.log(selectedOptionText);
+      console.log(selectedOption);
+
+      selectedOption.classList.add("correct");
+    } else {
+      selectedOption.classList.add("wrong");
+    }
+
+    buttonOption1.removeEventListener("click", handleClick);
+    buttonOption2.removeEventListener("click", handleClick);
+    buttonOption3.removeEventListener("click", handleClick);
+    buttonOption4.removeEventListener("click", handleClick);
+  };
+}

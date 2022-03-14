@@ -172,23 +172,23 @@ export const SubRegionQuestion = function (data, wrongChoices) {
 function buttonsContainer(randomArray) {
   return `
     <div class="card__buttons">
-    <button class="button__option" data-option="A">
-      <span class="btn-label"> A </span>
-      <span class="btn-option"> ${randomArray[0].option} </span>
-    </button>
-    <button class="button__option" data-option="B">
-      <span class="btn-label"> B </span>
-      <span class="btn-option"> ${randomArray[1].option} </span>
-    </button>
-    <button class="button__option" data-option="C">
-      <span class="btn-label"> C </span>
-      <span class="btn-option"> ${randomArray[2].option} </span>
-    </button>
-    <button class="button__option" data-option="D">
-      <span class="btn-label"> D </span>
-      <span class="btn-option"> ${randomArray[3].option} </span>
-    </button>
-  </div>
+      <button class="button__option" data-option="A" data-ans=${randomArray[0].answer}>
+        <span class="btn-label"> A </span>
+        <span class="btn-option"> ${randomArray[0].option} </span>
+      </button>
+      <button class="button__option" data-option="B" data-ans=${randomArray[0].answer}>
+        <span class="btn-label"> B </span>
+        <span class="btn-option"> ${randomArray[1].option} </span>
+      </button>
+      <button class="button__option" data-option="C" data-ans=${randomArray[0].answer}>
+        <span class="btn-label"> C </span>
+        <span class="btn-option"> ${randomArray[2].option} </span>
+      </button>
+      <button class="button__option" data-option="D" data-ans=${randomArray[0].answer}>
+        <span class="btn-label"> D </span>
+        <span class="btn-option"> ${randomArray[3].option} </span>
+      </button>
+    </div>
   `;
 }
 
