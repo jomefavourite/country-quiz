@@ -158,8 +158,9 @@ button {
   /* display: none; */
 }
 
-.button__next[disabled="true"] {
-  opacity: 0.3;
+.button__next[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .button__next:hover {

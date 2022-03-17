@@ -32,22 +32,42 @@ async function determineQuestion(data, score, questionNumber) {
 
   if (countriesData) {
     const randomMax = countriesData.length - 50;
-    const questionsRandom = Math.floor(Math.random() * randomMax);
-    // const questionsRandom = 153;
-    const countryData = countriesData[questionsRandom];
-    const countryDataNext1 = countriesData[questionsRandom + 1];
-    const countryDataNext2 = countriesData[questionsRandom + 2];
-    const countryDataNext3 = countriesData[questionsRandom + 3];
+
+    // let questionsRandom = 156;
+    let questionsRandom = Math.floor(Math.random() * randomMax);
+    let countryData = countriesData[questionsRandom];
+    let countryDataNext1 = countriesData[questionsRandom + 1];
+    let countryDataNext2 = countriesData[questionsRandom + 2];
+    let countryDataNext3 = countriesData[questionsRandom + 3];
+
+    console.log(questionsRandom, "questionsRandom first");
 
     // I need to check all the countryData if some of the values are
     // the same or if they are missing. If true that select another random value
 
-    const result = compareObjects(
+    let result = compareObjects(
       countryData,
       countryDataNext1,
       countryDataNext2,
       countryDataNext3
     );
+
+    while (result) {
+      questionsRandom = Math.floor(Math.random() * randomMax);
+      countryData = countriesData[questionsRandom];
+      countryDataNext1 = countriesData[questionsRandom + 1];
+      countryDataNext2 = countriesData[questionsRandom + 2];
+      countryDataNext3 = countriesData[questionsRandom + 3];
+
+      console.log(questionsRandom, "questionsRandom in loop");
+
+      result = compareObjects(
+        countryData,
+        countryDataNext1,
+        countryDataNext2,
+        countryDataNext3
+      );
+    }
 
     const wrongChoices = [countryDataNext1, countryDataNext2, countryDataNext3];
 
@@ -137,6 +157,7 @@ function determineOptionClicked(
         nextButton.addEventListener(
           "click",
           () => {
+            console.log("hello");
             determineQuestion(data, score, questionNumber);
           },
           { once: true }
@@ -171,11 +192,17 @@ function selectAll(element) {
 function compareObjects(a, b, c, d) {
   if (
     a.continents[0] === b.continents[0] ||
-    a.continents[0] === c.continents[0] ||
     a.continents[0] === d.continents[0] ||
+    a.continents[0] === c.continents[0] ||
+    b.continents[0] === c.continents[0] ||
+    b.continents[0] === d.continents[0] ||
+    c.continents[0] === d.continents[0] ||
     a.subregion === b.subregion ||
-    a.subregion === c.subregion ||
     a.subregion === d.subregion ||
+    a.subregion === c.subregion ||
+    b.subregion === c.subregion ||
+    b.subregion === d.subregion ||
+    c.subregion === d.subregion ||
     a.subregion.length === 0 ||
     b.subregion.length === 0 ||
     c.subregion.length === 0 ||

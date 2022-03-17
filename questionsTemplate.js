@@ -1,13 +1,3 @@
-let a = {
-  nigeria: {
-    countryFlag: "Which country does this flag below to?",
-    capital: "What's the capital of Nigeria?",
-    subRegion: "What Sub Region those the country Nigeria belong to?",
-    language: "Which of these languages is spoken in this country?",
-    continents: "What continent those Nigeria belong to?",
-  },
-};
-
 export const CapitalQuestion = function (data, wrongChoices) {
   const overAllData = [
     {
