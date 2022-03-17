@@ -32,7 +32,7 @@ export const CapitalQuestion = function (data, wrongChoices) {
 
   return `
    <div class="card__question">
-    <h3>${data.capital} is the capital of</h3>
+    <h3>${data.capital[0]} is the capital of</h3>
   </div>
 
   ${buttonsContainer(randomArray)}

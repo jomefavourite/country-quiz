@@ -33,11 +33,21 @@ async function determineQuestion(data, score, questionNumber) {
   if (countriesData) {
     const randomMax = countriesData.length - 50;
     const questionsRandom = Math.floor(Math.random() * randomMax);
-    // const questionsRandom = 1;
+    // const questionsRandom = 153;
     const countryData = countriesData[questionsRandom];
     const countryDataNext1 = countriesData[questionsRandom + 1];
     const countryDataNext2 = countriesData[questionsRandom + 2];
     const countryDataNext3 = countriesData[questionsRandom + 3];
+
+    // I need to check all the countryData if some of the values are
+    // the same or if they are missing. If true that select another random value
+
+    const result = compareObjects(
+      countryData,
+      countryDataNext1,
+      countryDataNext2,
+      countryDataNext3
+    );
 
     const wrongChoices = [countryDataNext1, countryDataNext2, countryDataNext3];
 
@@ -156,4 +166,23 @@ function select(element) {
 }
 function selectAll(element) {
   return document.querySelectorAll(element);
+}
+
+function compareObjects(a, b, c, d) {
+  if (
+    a.continents[0] === b.continents[0] ||
+    a.continents[0] === c.continents[0] ||
+    a.continents[0] === d.continents[0] ||
+    a.subregion === b.subregion ||
+    a.subregion === c.subregion ||
+    a.subregion === d.subregion ||
+    a.subregion.length === 0 ||
+    b.subregion.length === 0 ||
+    c.subregion.length === 0 ||
+    d.subregion.length === 0
+  ) {
+    return true;
+  } else {
+    return false;
+  }
 }
