@@ -25,10 +25,10 @@ async function fetchCountriesData() {
   }
 }
 
-// const countriesData = fetchCountriesData();
+const data = fetchCountriesData();
 
-async function determineQuestion(score, questionNumber) {
-  const countriesData = await fetchCountriesData();
+async function determineQuestion(data, score, questionNumber) {
+  const countriesData = await data;
 
   if (countriesData) {
     const randomMax = countriesData.length - 50;
@@ -85,7 +85,7 @@ async function determineQuestion(score, questionNumber) {
   }
 }
 
-determineQuestion(score, questionNumber);
+determineQuestion(data, score, questionNumber);
 
 function determineOptionClicked(
   countryData,
@@ -127,7 +127,7 @@ function determineOptionClicked(
         nextButton.addEventListener(
           "click",
           () => {
-            determineQuestion(score, questionNumber);
+            determineQuestion(data, score, questionNumber);
           },
           { once: true }
         );
