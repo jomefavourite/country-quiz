@@ -70,6 +70,11 @@ button {
   margin-right: 20px;
 }
 
+.btn-label,
+.btn-option {
+  pointer-events: none;
+}
+
 .card {
   --pd: 2rem 20px;
   position: relative;
@@ -83,6 +88,40 @@ button {
   right: 0;
   top: -4rem;
   display: none;
+}
+
+.card__img--2 {
+  display: block;
+  margin: auto;
+}
+
+.card__result {
+  text-align: center;
+  margin: 3rem 0 0;
+}
+
+.card__result h3 {
+  --heading: #1d355d;
+  font-weight: 700;
+  font-size: 48px;
+  color: var(--heading);
+}
+
+.card__result p {
+  font-size: 18px;
+}
+
+.card__result .score {
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--correct);
+}
+
+.card__result button {
+  --pd: 10px 40px;
+  --outline: #1d355d;
+  border: 2px solid var(--outline);
+  margin: 3rem auto 0;
 }
 
 .card__question {
@@ -119,6 +158,10 @@ button {
   /* display: none; */
 }
 
+.button__next[disabled="true"] {
+  opacity: 0.3;
+}
+
 .button__next:hover {
   background: hsla(var(--orange), 0.9);
 }
@@ -137,6 +180,27 @@ button {
 
 .show {
   display: block;
+}
+
+.animate-spin {
+  display: block;
+  color: var(--heading);
+  animation: spin 1s linear infinite;
+  width: 50px;
+  margin: auto;
+}
+
+.animate-spin .circle {
+  opacity: 0.25;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (min-width: 764px) {

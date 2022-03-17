@@ -137,6 +137,21 @@ export const SubRegionQuestion = function (data, wrongChoices) {
 `;
 };
 
+export const ResultContainer = function (score) {
+  return `
+    <img
+      src="./images/undraw_winners_ao2o 2.svg"
+      alt="winners"
+      class="card__img--2"
+    />
+    <div class="card__result">
+      <h3 class="result-text">Results</h3>
+      <p>You got <span class="score">${score}</span> correct answers</p>
+      <button>Try Again</button>
+    </div>
+  `;
+};
+
 function buttonsContainer(randomArray) {
   return `
     <div class="card__buttons">

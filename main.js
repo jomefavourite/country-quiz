@@ -3,32 +3,37 @@ import {
   CapitalQuestion,
   ContinentQuestion,
   SubRegionQuestion,
+  ResultContainer,
 } from "./questionsTemplate.js";
 
-let SCORE = 0;
+let score = 0;
+let questionNumber = 0;
 
 async function fetchCountriesData() {
   try {
-    const response = await fetch("data.json");
+    const response = await fetch(
+      "https://restcountries.com/v3/all?fields=name,capital,currencies,flags,continents,subregion"
+    );
 
-    // "https://restcountries.com/v3/all?fields=name,capital,currencies,flags,continents"
+    // "https://restcountries.com/v3/all?fields=name,capital,currencies,flags,continents,subregion"
 
     const data = await response.json();
 
-    return data.slice(0, 10);
+    return data;
   } catch (err) {
     console.log(err);
   }
 }
 
-async function determineQuestion(score) {
+// const countriesData = fetchCountriesData();
+
+async function determineQuestion(score, questionNumber) {
   const countriesData = await fetchCountriesData();
 
-  console.log(countriesData);
-
   if (countriesData) {
-    // const questionsRandom = Math.floor(countriesData.length * Math.random());
-    const questionsRandom = 1;
+    const randomMax = countriesData.length - 50;
+    const questionsRandom = Math.floor(Math.random() * randomMax);
+    // const questionsRandom = 1;
     const countryData = countriesData[questionsRandom];
     const countryDataNext1 = countriesData[questionsRandom + 1];
     const countryDataNext2 = countriesData[questionsRandom + 2];
@@ -36,7 +41,11 @@ async function determineQuestion(score) {
 
     const wrongChoices = [countryDataNext1, countryDataNext2, countryDataNext3];
 
+    console.log(questionsRandom, "questionsRandom");
     console.log(countryData);
+    console.log(countryDataNext1, "wrong1");
+    console.log(countryDataNext2, "wrong2");
+    console.log(countryDataNext3, "wrong3");
 
     const questionTypes = [
       {
@@ -57,13 +66,6 @@ async function determineQuestion(score) {
       },
     ];
 
-    // const questionTypes = [
-    //   CountryFlagQuestion,
-    //   CapitalQuestion,
-    //   SubRegionQuestion,
-    //   ContinentQuestion,
-    // ];
-
     const selectedQuestion =
       questionTypes[Math.floor(Math.random() * questionTypes.length)];
 
@@ -72,29 +74,39 @@ async function determineQuestion(score) {
       wrongChoices
     );
 
-    determineOptionClicked(countryData, selectedQuestion.type, score);
+    determineOptionClicked(
+      countryData,
+      selectedQuestion.type,
+      score,
+      questionNumber
+    );
+
+    return null;
   }
 }
 
-determineQuestion(SCORE);
+determineQuestion(score, questionNumber);
 
-const nextButton = select(".button__next");
-console.log(nextButton);
-
-function determineOptionClicked(countryData, questionType, score) {
+function determineOptionClicked(
+  countryData,
+  questionType,
+  score,
+  questionNumber
+) {
   const answer = checkButtonClicked(countryData, questionType);
   const buttonsCont = select(".card__buttons");
   const nextButton = select(".button__next");
-
-  buttonsCont.addEventListener("click", someFunction);
   const correctOption = select("[data-ans='true']");
+
+  nextButton.disabled = true;
+  buttonsCont.addEventListener("click", handleButtonOption);
 
   // console.log(correctOption);
 
-  function someFunction(e) {
+  function handleButtonOption(e) {
     const selectedOption = e.target;
-    console.log(e.target);
     const selectedOptionText = e.target.lastElementChild.innerText;
+
     if (selectedOption.classList.contains("button__option")) {
       if (answer === selectedOptionText) {
         selectedOption.classList.add("correct");
@@ -104,24 +116,38 @@ function determineOptionClicked(countryData, questionType, score) {
         selectedOption.classList.add("wrong");
       }
 
+      questionNumber = questionNumber + 1;
+      console.log(questionNumber, "questionNumber");
+
       correctOption.classList.add("correct");
       nextButton.disabled = false;
-      nextButton.addEventListener("click", () => determineQuestion(score));
-      buttonsCont.removeEventListener("click", someFunction);
+      buttonsCont.removeEventListener("click", handleButtonOption);
+
+      if (questionNumber <= 10) {
+        nextButton.addEventListener(
+          "click",
+          () => {
+            determineQuestion(score, questionNumber);
+          },
+          { once: true }
+        );
+      } else {
+        select(".card").innerHTML = ResultContainer(score);
+      }
     }
   }
 }
 
-function checkButtonClicked(data, questionType) {
+function checkButtonClicked(countryData, questionType) {
   if (
     questionType === "countryFlagQuestion" ||
     questionType === "capitalQuestion"
   ) {
-    return data.name.common;
+    return countryData.name.common;
   } else if (questionType === "subRegionQuestion") {
-    return data.subregion;
+    return countryData.subregion;
   } else if (questionType === "continentQuestion") {
-    return data.continents[0];
+    return countryData.continents[0];
   }
 }
 
