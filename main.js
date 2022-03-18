@@ -29,6 +29,7 @@ const data = fetchCountriesData();
 
 async function determineQuestion(data, score, questionNumber) {
   const countriesData = await data;
+  // select(".card__img").style.display = "block";
 
   if (countriesData) {
     const randomMax = countriesData.length - 50;
@@ -40,7 +41,7 @@ async function determineQuestion(data, score, questionNumber) {
     let countryDataNext2 = countriesData[questionsRandom + 2];
     let countryDataNext3 = countriesData[questionsRandom + 3];
 
-    console.log(questionsRandom, "questionsRandom first");
+    // console.log(questionsRandom, "questionsRandom first");
 
     // I need to check all the countryData if some of the values are
     // the same or if they are missing. If true that select another random value
@@ -59,7 +60,7 @@ async function determineQuestion(data, score, questionNumber) {
       countryDataNext2 = countriesData[questionsRandom + 2];
       countryDataNext3 = countriesData[questionsRandom + 3];
 
-      console.log(questionsRandom, "questionsRandom in loop");
+      // console.log(questionsRandom, "questionsRandom in loop");
 
       result = compareObjects(
         countryData,
@@ -71,11 +72,11 @@ async function determineQuestion(data, score, questionNumber) {
 
     const wrongChoices = [countryDataNext1, countryDataNext2, countryDataNext3];
 
-    console.log(questionsRandom, "questionsRandom");
-    console.log(countryData);
-    console.log(countryDataNext1, "wrong1");
-    console.log(countryDataNext2, "wrong2");
-    console.log(countryDataNext3, "wrong3");
+    // console.log(questionsRandom, "questionsRandom");
+    // console.log(countryData);
+    // console.log(countryDataNext1, "wrong1");
+    // console.log(countryDataNext2, "wrong2");
+    // console.log(countryDataNext3, "wrong3");
 
     const questionTypes = [
       {
@@ -105,6 +106,7 @@ async function determineQuestion(data, score, questionNumber) {
     );
 
     determineOptionClicked(
+      data,
       countryData,
       selectedQuestion.type,
       score,
@@ -118,6 +120,7 @@ async function determineQuestion(data, score, questionNumber) {
 determineQuestion(data, score, questionNumber);
 
 function determineOptionClicked(
+  data,
   countryData,
   questionType,
   score,
@@ -157,13 +160,25 @@ function determineOptionClicked(
         nextButton.addEventListener(
           "click",
           () => {
-            console.log("hello");
             determineQuestion(data, score, questionNumber);
           },
           { once: true }
         );
       } else {
-        select(".card").innerHTML = ResultContainer(score);
+        select(".card__img").style.display = "none";
+        select("#card__question__container").innerHTML = ResultContainer(score);
+
+        nextButton.style.display = "none";
+
+        select(".btn__tryAgain").addEventListener(
+          "click",
+          () => {
+            score = 0;
+            questionNumber = 0;
+            determineQuestion(data, score, questionNumber);
+          },
+          { once: true }
+        );
       }
     }
   }

@@ -137,7 +137,7 @@ export const ResultContainer = function (score) {
     <div class="card__result">
       <h3 class="result-text">Results</h3>
       <p>You got <span class="score">${score}</span> correct answers</p>
-      <button>Try Again</button>
+      <button class="btn__tryAgain">Try Again</button>
     </div>
   `;
 };
