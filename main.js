@@ -34,17 +34,14 @@ async function determineQuestion(data, score, questionNumber) {
   if (countriesData) {
     const randomMax = countriesData.length - 50;
 
-    // let questionsRandom = 156;
-    let questionsRandom = Math.floor(Math.random() * randomMax);
+    let questionsRandom = 1;
+    // let questionsRandom = Math.floor(Math.random() * randomMax);
     let countryData = countriesData[questionsRandom];
     let countryDataNext1 = countriesData[questionsRandom + 1];
     let countryDataNext2 = countriesData[questionsRandom + 2];
     let countryDataNext3 = countriesData[questionsRandom + 3];
 
     // console.log(questionsRandom, "questionsRandom first");
-
-    // I need to check all the countryData if some of the values are
-    // the same or if they are missing. If true that select another random value
 
     let result = compareObjects(
       countryData,
@@ -105,6 +102,13 @@ async function determineQuestion(data, score, questionNumber) {
       wrongChoices
     );
 
+    questionNumber = questionNumber + 1;
+    console.log(questionNumber, "questionNumber");
+
+    if (questionNumber === 10) {
+      select(".button__next").style.display = "none";
+    }
+
     determineOptionClicked(
       data,
       countryData,
@@ -132,13 +136,13 @@ function determineOptionClicked(
   const correctOption = select("[data-ans='true']");
 
   nextButton.disabled = true;
-  buttonsCont.addEventListener("click", handleButtonOption);
 
-  // console.log(correctOption);
+  buttonsCont.addEventListener("click", handleButtonOption);
 
   function handleButtonOption(e) {
     const selectedOption = e.target;
     const selectedOptionText = e.target.lastElementChild.innerText;
+    const cardImage = select(".card__img");
 
     if (selectedOption.classList.contains("button__option")) {
       if (answer === selectedOptionText) {
@@ -149,14 +153,13 @@ function determineOptionClicked(
         selectedOption.classList.add("wrong");
       }
 
-      questionNumber = questionNumber + 1;
-      console.log(questionNumber, "questionNumber");
+      // questionNumber = questionNumber + 1;
 
       correctOption.classList.add("correct");
       nextButton.disabled = false;
       buttonsCont.removeEventListener("click", handleButtonOption);
 
-      if (questionNumber <= 10) {
+      if (questionNumber <= 9) {
         nextButton.addEventListener(
           "click",
           () => {
@@ -165,7 +168,7 @@ function determineOptionClicked(
           { once: true }
         );
       } else {
-        select(".card__img").style.display = "none";
+        cardImage.classList.add("card__img--hide");
         select("#card__question__container").innerHTML = ResultContainer(score);
 
         nextButton.style.display = "none";
@@ -175,6 +178,9 @@ function determineOptionClicked(
           () => {
             score = 0;
             questionNumber = 0;
+            cardImage.classList.add("card__img--show");
+            cardImage.classList.remove("card__img--hide");
+            nextButton.style.display = "block";
             determineQuestion(data, score, questionNumber);
           },
           { once: true }

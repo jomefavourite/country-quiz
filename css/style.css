@@ -195,6 +195,59 @@ button {
   opacity: 0.25;
 }
 
+.card__img--hide {
+  display: none;
+}
+
+.skeleton {
+  --height: 100px;
+  --width: 100%;
+  --skeletonBg: 0, 0, 0;
+  --br: 10px;
+  width: var(--width);
+  height: var(--height);
+  background: rgba(var(--skeletonBg), 0.4);
+  border-radius: var(--br);
+  animation: skeleton 2s ease-in infinite;
+  /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+}
+
+.skeleton__question--img {
+  --width: 50%;
+}
+
+.skeleton__question--title:nth-of-type(2) {
+  --height: 30px;
+  --width: 100%;
+  margin-top: 10px;
+}
+
+.skeleton__question--title {
+  --height: 30px;
+  --width: 80%;
+  margin-top: 10px;
+}
+
+.skeleton__button__option {
+  --height: 40px;
+}
+
+.skeleton__button__option + .skeleton__button__option {
+  margin-top: 10px;
+}
+
+@keyframes skeleton {
+  0% {
+    background: rgba(var(--skeletonBg), 0.4);
+  }
+  50% {
+    background: rgba(var(--skeletonBg), 0.2);
+  }
+  100% {
+    background: rgba(var(--skeletonBg), 0.4);
+  }
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -215,5 +268,13 @@ button {
 
   .card__img {
     display: block;
+  }
+
+  .card__img--show {
+    display: block;
+  }
+
+  .card__img--hide {
+    display: none;
   }
 }
