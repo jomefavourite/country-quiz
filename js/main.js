@@ -15,8 +15,6 @@ async function fetchCountriesData() {
       "https://restcountries.com/v3/all?fields=name,capital,currencies,flags,continents,subregion"
     );
 
-    // "https://restcountries.com/v3/all?fields=name,capital,currencies,flags,continents,subregion"
-
     const data = await response.json();
 
     return data;
@@ -99,7 +97,6 @@ async function determineQuestion(data, score, questionNumber) {
     );
 
     questionNumber = questionNumber + 1;
-    // console.log(questionNumber, "questionNumber");
 
     if (questionNumber === 10) {
       select(".button__next").style.display = "none";

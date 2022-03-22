@@ -155,7 +155,6 @@ button {
   margin-top: 20px;
   margin-left: auto;
   color: var(--white);
-  /* display: none; */
 }
 
 .button__next[disabled] {
@@ -181,18 +180,6 @@ button {
 
 .show {
   display: block;
-}
-
-.animate-spin {
-  display: block;
-  color: var(--heading);
-  animation: spin 1s linear infinite;
-  width: 50px;
-  margin: auto;
-}
-
-.animate-spin .circle {
-  opacity: 0.25;
 }
 
 .card__img--hide {
@@ -245,15 +232,6 @@ button {
   }
   100% {
     background: rgba(var(--skeletonBg), 0.4);
-  }
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
   }
 }
 
