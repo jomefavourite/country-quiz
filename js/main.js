@@ -11,9 +11,9 @@ let questionNumber = 0;
 
 async function fetchCountriesData() {
   try {
-    const response = await fetch(
-      "https://restcountries.com/v3/all?fields=name,capital,currencies,flags,continents,subregion"
-    );
+    const response = await fetch("data.json");
+
+    // "https://restcountries.com/v3/all?fields=name,capital,currencies,flags,continents,subregion";
 
     const data = await response.json();
 
@@ -126,7 +126,6 @@ function determineOptionClicked(
   const answer = checkButtonClicked(countryData, questionType);
   const buttonsCont = select(".card__buttons");
   const nextButton = select(".button__next");
-  const correctOption = select("[data-ans='true']");
 
   nextButton.disabled = true;
 
@@ -146,7 +145,12 @@ function determineOptionClicked(
         selectedOption.classList.add("wrong");
       }
 
-      correctOption.classList.add("correct");
+      selectAll(".button__option").forEach((btn) => {
+        if (btn.lastElementChild.innerText === answer) {
+          btn.classList.add("correct");
+        }
+      });
+
       nextButton.disabled = false;
       buttonsCont.removeEventListener("click", handleButtonOption);
 
