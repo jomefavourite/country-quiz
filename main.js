@@ -29,19 +29,15 @@ const data = fetchCountriesData();
 
 async function determineQuestion(data, score, questionNumber) {
   const countriesData = await data;
-  // select(".card__img").style.display = "block";
 
   if (countriesData) {
     const randomMax = countriesData.length - 50;
 
-    let questionsRandom = 1;
-    // let questionsRandom = Math.floor(Math.random() * randomMax);
+    let questionsRandom = Math.floor(Math.random() * randomMax);
     let countryData = countriesData[questionsRandom];
     let countryDataNext1 = countriesData[questionsRandom + 1];
     let countryDataNext2 = countriesData[questionsRandom + 2];
     let countryDataNext3 = countriesData[questionsRandom + 3];
-
-    // console.log(questionsRandom, "questionsRandom first");
 
     let result = compareObjects(
       countryData,
@@ -103,7 +99,7 @@ async function determineQuestion(data, score, questionNumber) {
     );
 
     questionNumber = questionNumber + 1;
-    console.log(questionNumber, "questionNumber");
+    // console.log(questionNumber, "questionNumber");
 
     if (questionNumber === 10) {
       select(".button__next").style.display = "none";
@@ -152,8 +148,6 @@ function determineOptionClicked(
       } else {
         selectedOption.classList.add("wrong");
       }
-
-      // questionNumber = questionNumber + 1;
 
       correctOption.classList.add("correct");
       nextButton.disabled = false;
