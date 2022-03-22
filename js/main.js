@@ -141,7 +141,7 @@ function determineOptionClicked(
       if (answer === selectedOptionText) {
         selectedOption.classList.add("correct");
         score = score + 1;
-        console.log(score, "score");
+        // console.log(score, "score");
       } else {
         selectedOption.classList.add("wrong");
       }
