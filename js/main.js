@@ -9,6 +9,7 @@ import {
 let score = 0;
 let questionNumber = 0;
 
+// Using async await method to get the countries date
 async function fetchCountriesData() {
   try {
     const response = await fetch(
@@ -29,13 +30,17 @@ async function determineQuestion(data, score, questionNumber) {
   const countriesData = await data;
 
   if (countriesData) {
+    // The reason for `countriesData.length - 50` is to ensure that the selected question data
+    // is at least from 0 to 200 so as for the next 3 question data, to serve as wrong choices
     const randomMax = countriesData.length - 50;
-
     let questionsRandom = Math.floor(Math.random() * randomMax);
+
     let countryData = countriesData[questionsRandom];
     let countryDataNext1 = countriesData[questionsRandom + 1];
     let countryDataNext2 = countriesData[questionsRandom + 2];
     let countryDataNext3 = countriesData[questionsRandom + 3];
+
+    // The result variable is expecting a Boolean (true or false) value from the compareObjects function call
 
     let result = compareObjects(
       countryData,
@@ -44,14 +49,18 @@ async function determineQuestion(data, score, questionNumber) {
       countryDataNext3
     );
 
+    /**
+     * An iteration that checks if the questions data (countryData, countryDataNext1, countryDataNext2, countryDataNext3)
+     * selected have some similar values (view compareObjects function to identify selected values)
+     * if the same selected values are the same the while loop continues until `result` is `false`
+     **/
+
     while (result) {
       questionsRandom = Math.floor(Math.random() * randomMax);
       countryData = countriesData[questionsRandom];
       countryDataNext1 = countriesData[questionsRandom + 1];
       countryDataNext2 = countriesData[questionsRandom + 2];
       countryDataNext3 = countriesData[questionsRandom + 3];
-
-      // console.log(questionsRandom, "questionsRandom in loop");
 
       result = compareObjects(
         countryData,
@@ -62,12 +71,6 @@ async function determineQuestion(data, score, questionNumber) {
     }
 
     const wrongChoices = [countryDataNext1, countryDataNext2, countryDataNext3];
-
-    // console.log(questionsRandom, "questionsRandom");
-    // console.log(countryData);
-    // console.log(countryDataNext1, "wrong1");
-    // console.log(countryDataNext2, "wrong2");
-    // console.log(countryDataNext3, "wrong3");
 
     const questionTypes = [
       {
@@ -88,6 +91,11 @@ async function determineQuestion(data, score, questionNumber) {
       },
     ];
 
+    /**
+     * selectedQuestion variable picks a question to be shown at random,
+     * either it's a Country Flag Question or Country Capital Question or
+     * Country Sub-Region Question or a Country Continent Question
+     **/
     const selectedQuestion =
       questionTypes[Math.floor(Math.random() * questionTypes.length)];
 
@@ -116,6 +124,12 @@ async function determineQuestion(data, score, questionNumber) {
 
 determineQuestion(data, score, questionNumber);
 
+/**
+ * This function is to determine the questions option clicked
+ * Was the correct option clicked?
+ * Which of the options is the correct option
+ * What happens when the next button is clicked
+ **/
 function determineOptionClicked(
   data,
   countryData,
@@ -141,7 +155,6 @@ function determineOptionClicked(
       if (answer === selectedOptionText) {
         selectedOption.classList.add("correct");
         score = score + 1;
-        // console.log(score, "score");
       } else {
         selectedOption.classList.add("wrong");
       }
@@ -181,6 +194,10 @@ function determineOptionClicked(
   }
 }
 
+/**
+ * This function is to determine from the questions option type clicked
+ * what's the answer to that particular question type
+ **/
 function checkButtonClicked(countryData, questionType) {
   if (
     questionType === "countryFlagQuestion" ||
@@ -201,6 +218,10 @@ function selectAll(element) {
   return document.querySelectorAll(element);
 }
 
+/**
+ * This function is to determine from the questions option type clicked
+ * what's the answer to that particular question type
+ **/
 function compareObjects(a, b, c, d) {
   if (
     a.continents[0] === b.continents[0] ||
