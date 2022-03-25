@@ -1,21 +1,9 @@
 export const CapitalQuestion = function (data, wrongChoices) {
   const overAllData = [
-    {
-      option: data.name.common,
-      answer: true,
-    },
-    {
-      option: wrongChoices[0].name.common,
-      answer: false,
-    },
-    {
-      option: wrongChoices[1].name.common,
-      answer: false,
-    },
-    {
-      option: wrongChoices[2].name.common,
-      answer: false,
-    },
+    data.name.common,
+    wrongChoices[0].name.common,
+    wrongChoices[1].name.common,
+    wrongChoices[2].name.common,
   ];
 
   const randomArray = shuffleArray(overAllData);
@@ -31,22 +19,10 @@ export const CapitalQuestion = function (data, wrongChoices) {
 
 export const ContinentQuestion = function (data, wrongChoices) {
   const overAllData = [
-    {
-      option: data.continents[0],
-      answer: true,
-    },
-    {
-      option: wrongChoices[0].continents[0],
-      answer: false,
-    },
-    {
-      option: wrongChoices[1].continents[0],
-      answer: false,
-    },
-    {
-      option: wrongChoices[2].continents[0],
-      answer: false,
-    },
+    data.continents[0],
+    wrongChoices[0].continents[0],
+    wrongChoices[1].continents[0],
+    wrongChoices[2].continents[0],
   ];
 
   const randomArray = shuffleArray(overAllData);
@@ -62,22 +38,10 @@ export const ContinentQuestion = function (data, wrongChoices) {
 
 export const CountryFlagQuestion = function (data, wrongChoices) {
   const overAllData = [
-    {
-      option: data.name.common,
-      answer: true,
-    },
-    {
-      option: wrongChoices[0].name.common,
-      answer: false,
-    },
-    {
-      option: wrongChoices[1].name.common,
-      answer: false,
-    },
-    {
-      option: wrongChoices[2].name.common,
-      answer: false,
-    },
+    data.name.common,
+    wrongChoices[0].name.common,
+    wrongChoices[1].name.common,
+    wrongChoices[2].name.common,
   ];
 
   const randomArray = shuffleArray(overAllData);
@@ -98,22 +62,10 @@ export const CountryFlagQuestion = function (data, wrongChoices) {
 
 export const SubRegionQuestion = function (data, wrongChoices) {
   const overAllData = [
-    {
-      option: data.subregion,
-      answer: true,
-    },
-    {
-      option: wrongChoices[0].subregion,
-      answer: false,
-    },
-    {
-      option: wrongChoices[1].subregion,
-      answer: false,
-    },
-    {
-      option: wrongChoices[2].subregion,
-      answer: false,
-    },
+    data.subregion,
+    wrongChoices[0].subregion,
+    wrongChoices[1].subregion,
+    wrongChoices[2].subregion,
   ];
 
   const randomArray = shuffleArray(overAllData);
@@ -145,21 +97,21 @@ export const ResultContainer = function (score) {
 function buttonsContainer(randomArray) {
   return `
     <div class="card__buttons">
-      <button class="button__option" data-option="A" data-ans=${randomArray[0].answer}>
+      <button class="button__option" data-option="A">
         <span class="btn-label"> A </span>
-        <span class="btn-option"> ${randomArray[0].option} </span>
+        <span class="btn-option"> ${randomArray[0]} </span>
       </button>
-      <button class="button__option" data-option="B" data-ans=${randomArray[1].answer}>
+      <button class="button__option" data-option="B">
         <span class="btn-label"> B </span>
-        <span class="btn-option"> ${randomArray[1].option} </span>
+        <span class="btn-option"> ${randomArray[1]} </span>
       </button>
-      <button class="button__option" data-option="C" data-ans=${randomArray[2].answer}>
+      <button class="button__option" data-option="C">
         <span class="btn-label"> C </span>
-        <span class="btn-option"> ${randomArray[2].option} </span>
+        <span class="btn-option"> ${randomArray[2]} </span>
       </button>
-      <button class="button__option" data-option="D" data-ans=${randomArray[3].answer}>
+      <button class="button__option" data-option="D">
         <span class="btn-label"> D </span>
-        <span class="btn-option"> ${randomArray[3].option} </span>
+        <span class="btn-option"> ${randomArray[3]} </span>
       </button>
     </div>
   `;
