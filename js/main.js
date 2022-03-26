@@ -1,20 +1,22 @@
 import {
-  CountryFlagQuestion,
-  CapitalQuestion,
-  ContinentQuestion,
-  SubRegionQuestion,
-  ResultContainer,
+  CountryFlagQuestion, // This is a function that can be called
+  CapitalQuestion, // This is a function that can be called
+  ContinentQuestion, // This is a function that can be called
+  SubRegionQuestion, // This is a function that can be called
+  ResultContainer, // This is a function that can be called
 } from "./questionsTemplate.js";
 
+// score keeps track of the question answered correctly
 let score = 0;
+// questionNumber keeps track of the number of questions answered
 let questionNumber = 0;
 
-// Using async await method to get the countries date
+// Using async await syntax to get the countries data from an API
 async function fetchCountriesData() {
   try {
-    const response = await fetch("data.json");
-
-    // "https://restcountries.com/v3/all?fields=name,capital,currencies,flags,continents,subregion";
+    const response = await fetch(
+      "https://restcountries.com/v3/all?fields=name,capital,currencies,flags,continents,subregion"
+    );
 
     const data = await response.json();
 
@@ -24,6 +26,7 @@ async function fetchCountriesData() {
   }
 }
 
+// Note the value return from the function `fetchCountriesData()` is a Promise
 const data = fetchCountriesData();
 
 async function determineQuestion(data, score, questionNumber) {
@@ -54,7 +57,6 @@ async function determineQuestion(data, score, questionNumber) {
      * selected have some similar values (view compareObjects function to identify selected values)
      * if the same selected values are the same the while loop continues until `result` is `false`
      **/
-
     while (result) {
       questionsRandom = Math.floor(Math.random() * randomMax);
       countryData = countriesData[questionsRandom];
@@ -99,6 +101,10 @@ async function determineQuestion(data, score, questionNumber) {
     const selectedQuestion =
       questionTypes[Math.floor(Math.random() * questionTypes.length)];
 
+    /**
+     * This block of code shows the selected question type to the DOM
+     * on the element with id = "card__question__container"
+     **/
     select("#card__question__container").innerHTML = selectedQuestion.quesFun(
       countryData,
       wrongChoices
@@ -110,6 +116,7 @@ async function determineQuestion(data, score, questionNumber) {
       select(".button__next").style.display = "none";
     }
 
+    // Explanation to this function call at the function body declaration
     determineOptionClicked(
       data,
       countryData,
@@ -158,6 +165,7 @@ function determineOptionClicked(
         selectedOption.classList.add("wrong");
       }
 
+      // Looping through all the question options to determine the correct option
       selectAll(".button__option").forEach((btn) => {
         if (btn.lastElementChild.innerText === answer) {
           btn.classList.add("correct");
@@ -165,6 +173,10 @@ function determineOptionClicked(
       });
 
       nextButton.disabled = false;
+
+      // The event handler function `handleButtonOption` is removed to ensure that
+      // the button once clicked with the condition at Line 160
+      // the button can't be clicked upon again
       buttonsCont.removeEventListener("click", handleButtonOption);
 
       if (questionNumber <= 9) {
@@ -177,10 +189,18 @@ function determineOptionClicked(
         );
       } else {
         cardImage.classList.add("card__img--hide");
+
+        // This is to show the last screen when all 10 questions has been answered
         select("#card__question__container").innerHTML = ResultContainer(score);
 
         nextButton.style.display = "none";
 
+        /**
+         * Once the try again button is clicked
+         * some variables such as the score, questionNumbers ...
+         * go back to their initial state
+         * and the cycle continues as the determineQuestion function is called again
+         **/
         select(".btn__tryAgain").addEventListener(
           "click",
           () => {
@@ -215,9 +235,12 @@ function checkButtonClicked(countryData, questionType) {
   }
 }
 
+// This function returns just an element from the DOM
 function select(element) {
   return document.querySelector(element);
 }
+
+// This function returns elements with similar class selectors (or similar elements) as NodeList from the DOM
 function selectAll(element) {
   return document.querySelectorAll(element);
 }
