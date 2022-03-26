@@ -1,3 +1,12 @@
+/**
+ * The overAllData stores the correct country data and the wrong country data
+ *
+ * The shuffleArray function basically changes the position of the array element
+ * to ensure that the position of the options doesn't remain the same.
+ *
+ * The buttonsContainer function shows the various options
+ **/
+
 export const CapitalQuestion = function (data, wrongChoices) {
   const overAllData = [
     data.name.common,
